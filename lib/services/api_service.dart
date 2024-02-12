@@ -10,7 +10,7 @@ class ApiService {
       "https://webtoon-crawler.nomadcoders.workers.dev";
   static const String today = 'today';
 
-  Future<List<WebtoonModel>> getTodaysToons() async {
+  static Future<List<WebtoonModel>> getTodaysToons() async {
     List<WebtoonModel> webtooninstances = [];
     final url = Uri.parse('$baseUrl/$today');
     final response = await http.get(url);
@@ -24,7 +24,7 @@ class ApiService {
     throw Error();
   }
 
-  Future<WebtoonDetailModel> getDetailsById(String id) async {
+  static Future<WebtoonDetailModel> getDetailsById(String id) async {
     final url = Uri.parse('$baseUrl/$id');
     final response = await http.get(url);
     if (response.statusCode == 200) {
@@ -34,7 +34,8 @@ class ApiService {
     throw Error();
   }
 
-  Future<List<WebtoonEpisodeModel>> getLatestEpisodesById(String id) async {
+  static Future<List<WebtoonEpisodeModel>> getLatestEpisodesById(
+      String id) async {
     List<WebtoonEpisodeModel> episodeInstances = [];
     final url = Uri.parse('$baseUrl/$id/episodes');
     final response = await http.get(url);
